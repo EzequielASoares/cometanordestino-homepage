@@ -8,23 +8,26 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout do repositório
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22' # Usando a 22 para dar match com o Next 16
+          cache: 'npm'
 
-      - name: Instalar dependências
-        run: npm install
+      - name: Install dependencies
+        run: npm ci # npm ci é mais seguro para automação que o npm install
 
-      - name: Build do projeto
+      - name: Build Next.js
         run: npm run build
 
-      - name: Deploy via FTP
+      - name: Debug - List files
+        run: ls -la # Isso vai nos mostrar se a pasta 'out' apareceu mesmo
+
+      - name: Deploy to UFRN
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: cometanordestino.ect.ufrn.br
@@ -32,3 +35,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
           server-dir: ./public_html/
+          dangerous-clean-slate: false # Evita que ele delete coisas importantes por erro
