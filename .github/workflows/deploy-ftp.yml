@@ -1,4 +1,4 @@
-name: Deploy via FTP
+name: Deploy Cometa Nordestino
 
 on:
   push:
@@ -6,33 +6,42 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: 🚚 Checkout do código
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: 🟢 Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22' # Usando a 22 para dar match com o Next 16
+          node-version: '22'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci # npm ci é mais seguro para automação que o npm install
+      - name: 📦 Instalar dependências
+        run: npm ci
 
-      - name: Build Next.js
+      - name: 🏗️ Build do Next.js
         run: npm run build
 
-      - name: Debug - List files
-        run: ls -la # Isso vai nos mostrar se a pasta 'out' apareceu mesmo
+      - name: 🔍 Verificar diretório de saída
+        run: |
+          if [ -d "out" ]; then
+            echo "✅ Pasta 'out' encontrada com sucesso."
+            ls -la out
+          else
+            echo "❌ ERRO: Pasta 'out' não encontrada! Listando arquivos da raiz para debug:"
+            ls -la
+            exit 1
+          fi
 
-      - name: Deploy to UFRN
+      - name: 🚀 Deploy via FTP para UFRN
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: cometanordestino.ect.ufrn.br
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
+          local-dir: out/
           server-dir: ./public_html/
-          dangerous-clean-slate: false # Evita que ele delete coisas importantes por erro
+          dangerous-clean-slate: false
