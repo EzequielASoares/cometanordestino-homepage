@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* ── Cores do Cometa Nordestino ── */
+  --color-brand-blue: #004775;
+  --color-brand-blue-light: #005f9e;
+  --color-brand-blue-pale: #e8f4fb;
+  --color-brand-blue-mist: #f0f7fc;
+  --color-brand-accent: #D4A017;
+  --color-brand-accent-light: #f5ecd4;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: #ffffff;
+  --color-surface-alt: #f8fafb;
+  --color-surface-card: #ffffff;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-text-primary: #1a2b3c;
+  --color-text-secondary: #4a6274;
+  --color-text-muted: #7a8f9e;
+
+  --color-border-light: #e2eaf0;
+  --color-border-medium: #cdd8e0;
+
+  --font-space-grotesk: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-inter: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-space-mono: var(--font-space-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --animate-comet: comet 10s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+
+  @keyframes comet {
+    0% { transform: translateX(-100px) translateY(100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(110vw) translateY(-50vh); opacity: 0; }
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.6); opacity: 1; }
   }
 }
 
+:root {
+  --background: #ffffff;
+  --foreground: #1a2b3c;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.text-gradient-blue {
+  background-image: linear-gradient(135deg, #004775, #005f9e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
