@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: 🏗️ Build do Next.js
-        run: npm run build
+        run: npx next build
 
       - name: 🔍 Verificar diretório de saída
         run: |
