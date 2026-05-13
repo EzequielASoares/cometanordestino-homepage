@@ -18,16 +18,7 @@ export const Cities = () => {
 
   return (
     <section className="py-24 md:py-32 w-full bg-brand-blue relative overflow-hidden" id="cidades">
-      {/* Imagem do coordenador Marildo no fundo à esquerda */}
-      <motion.img 
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 0.4, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        src="/images/coordenador-marildo.png" 
-        alt="Coordenador Marildo" 
-        className="absolute -bottom-5 -left-20 md:-left-32 lg:-left-[15%] md:-bottom-10 w-[600px] h-auto md:w-[900px] lg:w-[1400px] lg:h-[1000px] object-contain object-left-bottom z-0 pointer-events-none drop-shadow-2xl"
-      />
+
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div {...reveal} className="text-center mb-6">
@@ -48,9 +39,10 @@ export const Cities = () => {
             viewport={{ once: true, margin: "-50px" }}
             className="w-full h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] rounded-xl overflow-hidden shadow-2xl border border-white/10"
           >
-            <iframe 
-              src="https://www.google.com/maps/d/u/0/embed?mid=18_Z1T-A334rSooZI3UfR0pPbtCEx7Ag&ehbc=2E312F&noprof=1" 
+            <iframe
+              src="https://www.google.com/maps/d/u/0/embed?mid=18_Z1T-A334rSooZI3UfR0pPbtCEx7Ag&ehbc=2E312F&noprof=1"
               className="w-full h-full border-0"
+              style={{ filter: "invert(90%) hue-rotate(190deg) brightness(1.1) contrast(1.2)" }}
               title="Mapa de Cidades do Cometa Nordestino"
               loading="lazy"
             />
@@ -58,12 +50,13 @@ export const Cities = () => {
 
           {/* ── City chips by state ── */}
           <div className="relative flex flex-col gap-8 h-full min-h-[400px]">
-            {/* Watermark SVG background */}
-            <div 
-              className="absolute inset-0 opacity-10 pointer-events-none bg-no-repeat bg-center bg-contain" 
-              style={{ backgroundImage: "url('/images/br.svg')" }}
+            {/* Imagem do coordenador Marildo no fundo à direita */}
+            <img
+              src="/images/coordenador-marildo.png"
+              alt="Coordenador Marildo"
+              className="absolute -bottom-24 -right-64 md:-bottom-32 md:-right-96 lg:-right-[650px] w-[800px] md:w-[1200px] lg:w-[1500px] max-w-none opacity-20 pointer-events-none object-contain object-bottom -scale-x-100"
             />
-            
+
             <div className="relative z-10 flex flex-col gap-8">
               {citiesByState.map((stateGroup, idx) => (
                 <div key={idx}>

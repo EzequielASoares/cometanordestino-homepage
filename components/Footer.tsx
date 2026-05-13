@@ -4,7 +4,7 @@ import { Camera, MessageCircle, Video, Mail, MapPin } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="bg-white pt-20 pb-10 relative border-t border-border-light" id="contato">
+    <footer className="bg-white pt-0 pb-10 relative border-t border-border-light" id="contato">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 

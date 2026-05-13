@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 const novosExperimentos = [
   { title: "Polarização da luz", desc: "Investigando a natureza da luz através de suas propriedades polarizadas no estudo astronômico", image: "https://i.imgur.com/ZYfQtsR.png" },
   { title: "Formação da imagem", desc: "Analisando os processos ópticos para compreender a formação das imagens no contexto celeste", image: "https://i.imgur.com/kCcYIlF.png" },
-  { title: "Trânsito planetário", desc: "Estudando os alinhamentos planetários para explorar suas implicações no sistema solar", image: "https://i.imgur.com/g8w93eB.png" },
   { title: "Eclipses na Astronomia", desc: "Examinando os fenômenos dos eclipses para compreender melhor os movimentos celestes", image: "https://i.imgur.com/rw86R6r.png" },
   { title: "Fases da lua", desc: "Analisando os padrões das fases lunares para compreender os ciclos lunares", image: "https://i.imgur.com/35cSvjo.png" },
   { title: "Espaço tempo", desc: "Explorando a conexão entre espaço e tempo na cosmologia e astronomia moderna", image: "https://i.imgur.com/fe5NfaQ.png" },

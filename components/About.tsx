@@ -98,36 +98,7 @@ export const About = () => {
           </div>
         </motion.div>
 
-        {/* Visual Content - SVG Orbital System */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="relative w-full aspect-square max-w-[420px] mx-auto flex items-center justify-center"
-        >
-          {/* Central body */}
-          <div className="absolute w-14 h-14 rounded-full bg-gradient-to-tr from-brand-blue to-brand-blue-light shadow-lg shadow-brand-blue/20 z-10" />
 
-          {/* Orbit 1 */}
-          <div className="absolute w-[40%] h-[40%] rounded-full border border-brand-blue/15 animate-[spin_12s_linear_infinite]">
-            <div className="absolute -top-1.5 left-1/2 w-3 h-3 rounded-full bg-brand-blue shadow-sm" />
-          </div>
-
-          {/* Orbit 2 */}
-          <div className="absolute w-[65%] h-[65%] rounded-full border border-brand-blue/10 animate-[spin_20s_linear_infinite_reverse]">
-            <div className="absolute top-1/2 -right-2 w-3.5 h-3.5 rounded-full bg-brand-accent shadow-sm" />
-          </div>
-
-          {/* Orbit 3 */}
-          <div className="absolute w-[88%] h-[88%] rounded-full border border-border-light animate-[spin_30s_linear_infinite]">
-            <div className="absolute bottom-8 left-4 w-2 h-2 rounded-full bg-brand-blue/40" />
-            <div className="absolute top-8 right-8 w-2 h-2 rounded-full bg-brand-accent/50" />
-          </div>
-
-          {/* Subtle bg */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse,rgba(0,71,117,0.04)_0%,transparent_60%)] pointer-events-none" />
-        </motion.div>
       </div>
     </section>
   );
