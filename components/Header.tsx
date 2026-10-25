@@ -3,20 +3,22 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { name: "Início", href: "#" },
-  { name: "Sobre", href: "#sobre" },
-  { name: "Oficinas", href: "#workshop" },
-  { name: "Cidades", href: "#cidades" },
-  { name: "Equipe", href: "#equipe" },
-  { name: "Ebook", href: "#ebook" },
-  { name: "Contato", href: "#contato" },
+  { name: "Início", href: "/" },
+  { name: "Equipe", href: "/equipe" },
+  { name: "Jogos Educativos", href: "/jogos-educativos" },
+  { name: "eBook", href: "/ebook" },
+  { name: "Contato", href: "/contato" },
+  { name: "Participe", href: "/participar" },
 ];
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +27,12 @@ export const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const getHref = (href: string) => {
+    if (href.startsWith("/")) return href;
+    if (href === "#") return isHome ? "#" : "/";
+    return isHome ? href : `/${href}`;
+  };
 
   return (
     <header
@@ -35,38 +43,43 @@ export const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5">
+        <a href={isHome ? "#" : "/"} className="flex items-center gap-2.5">
           <img src="/images/logo.png" alt="Cometa Nordestino" className="h-10 w-10 object-contain" />
-          <span className="text-brand-blue font-space-grotesk font-bold text-xl tracking-tight">
+          <span
+            className={`font-space-grotesk font-bold text-xl tracking-tight transition-colors ${
+              scrolled ? "text-brand-blue" : "text-white"
+            }`}
+          >
             Cometa Nordestino
           </span>
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-text-secondary hover:text-brand-blue transition-colors"
+              href={getHref(link.href)}
+              className={`text-sm font-medium transition-colors ${
+                pathname === link.href
+                  ? scrolled
+                    ? "text-brand-blue font-semibold"
+                    : "text-brand-accent font-semibold"
+                  : scrolled
+                    ? "text-text-secondary hover:text-brand-blue"
+                    : "text-white/80 hover:text-white"
+              }`}
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <a
-            href="#sobre"
-            className="px-5 py-2.5 rounded-lg bg-brand-blue text-white text-sm font-semibold hover:bg-brand-blue-light transition-colors duration-200 shadow-sm"
-          >
-            Explorar Projeto
-          </a>
-        </div>
+
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-brand-blue"
+          className={`lg:hidden transition-colors ${scrolled ? "text-brand-blue" : "text-white"}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -80,25 +93,24 @@ export const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-border-light overflow-hidden"
+            className="lg:hidden bg-white border-b border-border-light overflow-hidden"
           >
             <nav className="flex flex-col items-center py-6 gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
-                  href={link.href}
-                  className="text-lg font-medium text-text-secondary hover:text-brand-blue transition-colors"
+                  href={getHref(link.href)}
+                  className={`text-lg font-medium transition-colors ${
+                    pathname === link.href
+                      ? "text-brand-blue font-semibold"
+                      : "text-text-secondary hover:text-brand-blue"
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
-              <a
-                href="#sobre"
-                className="mt-4 px-6 py-2.5 rounded-lg bg-brand-blue text-white text-sm font-semibold hover:bg-brand-blue-light transition-colors"
-              >
-                Explorar Projeto
-              </a>
+
             </nav>
           </motion.div>
         )}

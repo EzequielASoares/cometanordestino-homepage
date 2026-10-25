@@ -53,10 +53,13 @@ export const EbookCTA = () => {
               ))}
             </ul>
 
-            <button className="group px-8 py-4 rounded-lg bg-brand-blue text-white font-bold text-lg shadow-lg shadow-brand-blue/20 hover:bg-brand-blue-light hover:shadow-xl transition-all duration-300 flex items-center gap-3">
+            <a
+              href="/ebook"
+              className="group px-8 py-4 rounded-lg bg-brand-blue text-white font-bold text-lg shadow-lg shadow-brand-blue/20 hover:bg-brand-blue-light hover:shadow-xl transition-all duration-300 flex items-center gap-3"
+            >
               <Download size={20} className="group-hover:translate-y-0.5 transition-transform" />
-              Baixar Ebook Agora
-            </button>
+              Conhecer o eBook
+            </a>
           </div>
         </motion.div>
       </div>

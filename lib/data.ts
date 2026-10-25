@@ -88,7 +88,7 @@ export const team = [
     role: "Coord. UFRN",
     bio: "Especialista em estrelas massivas e buracos negros. Acredita que a ciência deve chegar a todos os cantos do Nordeste.",
     initials: "LA",
-    image: "/images/leo.png"
+    image: "/images/equipe/leonardo.jpg"
   },
   {
     name: "Profª Selma Vieira",
@@ -96,7 +96,7 @@ export const team = [
     role: "Coord. IFBA",
     bio: "Pesquisadora dedicada a levar o fascínio da física para além das paredes da universidade, focada na educação básica.",
     initials: "SV",
-    image: "/images/selma.png"
+    image: "/images/equipe/selma.jpg"
   },
   {
     name: "Prof. Marildo Pereira",
@@ -104,7 +104,7 @@ export const team = [
     role: "Coord. UEFS",
     bio: "Com vasta experiência em observação astronômica, coordena as ações no interior baiano inspirando novas gerações.",
     initials: "MP",
-    image: "/images/marildo.png"
+    image: "/images/equipe/marildo.jpg"
   }
 ];
 
